@@ -23,6 +23,8 @@ class PythonAutopep8
       atomProject = dirname(filePath);
 
     # TODO: check for: setup.cfg, tox.ini, .pep8 and .flake8
+    console.log atomProject
+    console.log atomProject + "setup.cfg"
     return fs.existsSync(atomProject + "setup.cfg")
 
   removeStatusbarItem: =>
