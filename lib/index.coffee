@@ -8,6 +8,9 @@ module.exports =
     formatOnSave:
       type: 'boolean'
       default: false
+    requireLocalConfig:
+      type: 'boolean'
+      default: false
     maxLineLength:
       type: 'integer'
       default: 100

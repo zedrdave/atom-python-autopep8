@@ -1,5 +1,6 @@
 $ = require 'jquery'
 process = require 'child_process'
+fs = require 'fs'
 
 module.exports =
 class PythonAutopep8
@@ -10,6 +11,19 @@ class PythonAutopep8
       return false
     grammar = editor.getGrammar().name
     return grammar == 'Python' or grammar == 'MagicPython'
+
+  lookForAutopepLocalConfig: ->
+    editor = atom.workspace.getActiveTextEditor()
+    if not editor?
+      return false
+
+    filePath = editor.getPath();
+    atomProject = atom.project.relativizePath(filePath)[0];
+    if not atomProject?
+      atomProject = dirname(filePath);
+
+    # TODO: check for: setup.cfg, tox.ini, .pep8 and .flake8
+    return fs.existsSync(atomProject + "setup.cfg")
 
   removeStatusbarItem: =>
     @statusBarTile?.destroy()
@@ -42,6 +56,10 @@ class PythonAutopep8
 
   format: ->
     if not @checkForPythonContext()
+      return
+
+    if atom.config.get "python-autopep8.requireLocalConfig" and not @lookForAutopepLocalConfig()
+      @updateStatusbarText("Skip", false)
       return
 
     cmd = atom.config.get "python-autopep8.autopep8Path"

@@ -6,3 +6,5 @@ Uses [autopep8](https://github.com/hhatto/autopep8) installed to format python c
 ### Install
 
 Make sure to have [autopep8](https://github.com/hhatto/autopep8) installed. Install it by running `pip install autopep8`
+
+**2020 Beta Version**
