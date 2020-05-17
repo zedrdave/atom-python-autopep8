@@ -53,7 +53,7 @@ class PythonAutopep8
 
     returnCode = process.spawnSync(cmd, params).status
     if returnCode != 0
-      @updateStatusbarText("x", true)
+      @updateStatusbarText("❌", true)
     else
-      @updateStatusbarText("√", false)
+      @updateStatusbarText("✅", false)
       @reload
