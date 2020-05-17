@@ -21,7 +21,7 @@ class PythonAutopep8
     atomProject = atom.project.relativizePath(filePath)[0];
     if not atomProject?
       atomProject = dirname(filePath);
-
+    console.log("atomProject:", atomProject)
     # TODO: check for: setup.cfg, tox.ini, .pep8 and .flake8
     return fs.existsSync(atomProject + "/setup.cfg")
 
