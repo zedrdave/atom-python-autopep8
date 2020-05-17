@@ -58,7 +58,8 @@ class PythonAutopep8
     if not @checkForPythonContext()
       return
 
-    if atom.config.get "python-autopep8.requireLocalConfig" and not @lookForAutopepLocalConfig()
+    requireLocalConfig = atom.config.get "python-autopep8.requireLocalConfig"
+    if requireLocalConfig and not @lookForAutopepLocalConfig()
       @updateStatusbarText("Skip", false)
       return
 
